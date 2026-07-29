@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="/static/style.css">
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <title>CBS5M</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
-<img src="/static/img1.png">
+<img src="img1.png" alt="CBS5M">
 <header class="navbar">
     <div class="logo"></div>
     <nav>
         <ul>
-            <li><a class="Hb" href="/">Home</a></li>
-            <!--<li><a href="WOSN.html">We on social networks</a></li>-->
+            <li><a class="Hb" href="index.html">Home</a></li>
             <li><a href="Team.html">Team</a></li>
             <li><a href="ser.html">Services</a></li>
             <li><a href="rul.html">Rules</a></li>
@@ -24,11 +23,13 @@
     </nav>
 </header>
     <div class="container">
-        {% block content %}{% endblock %}
+        <h1>CBS5M</h1>
+        <p>Communities Business Solutions</p>
     </div>
     <br><br><br><br><br>
-<p>2020 - 2026.    ©  CBS5M  Project.</p><a href="http://www.facebook.com/coinBusiness.official">Facebook</a>
-<a href="http://www.instagram.com/coinbusiness_official">Instagram</a><a href="http://www.linkedin.com/company/coinbusiness">LinkedIn</a>
-
+<p>2020 - 2026.    &copy;  CBS5M  Project.</p>
+<a href="http://www.facebook.com/coinBusiness.official">Facebook</a>
+<a href="http://www.instagram.com/coinbusiness_official">Instagram</a>
+<a href="http://www.linkedin.com/company/coinbusiness">LinkedIn</a>
 </body>
 </html>
