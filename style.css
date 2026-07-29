@@ -405,51 +405,228 @@ details[open] summary::before {
     padding-top: 20px;
 }
 
-/* Responsive */
-@media (max-width: 760px) {
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
     body {
-        font-size: 17px;
-        padding: 1rem;
+        font-size: 18px;
+        padding: 1.5rem;
     }
 
     .hero-img {
-        width: calc(100% + 2rem);
-        margin: -1rem -1rem 1.5rem -1rem;
-        max-height: 200px;
+        max-height: 260px;
+    }
+
+    h1 {
+        font-size: 2.4rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    body {
+        font-size: 16px;
+        padding: 0.8rem;
+        line-height: 1.6;
+    }
+
+    .hero-img {
+        width: calc(100% + 1.6rem);
+        margin: -0.8rem -0.8rem 1.2rem -0.8rem;
+        max-height: 180px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .navbar {
+        margin-bottom: 1.2rem;
     }
 
     .navbar ul {
         gap: 4px;
         padding: 0.5rem;
+        justify-content: center;
     }
 
     .navbar ul li a {
-        font-size: 0.8rem;
-        padding: 6px 12px;
+        font-size: 0.75rem;
+        padding: 8px 10px;
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
     }
 
-    .address-line {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .wallet-section {
-        padding: 1rem;
+    .lang-link {
+        font-size: 0.7rem !important;
+        padding: 4px 10px !important;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.7rem;
+        margin-bottom: 0.4rem;
     }
 
     h2 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+        margin: 1rem 0 0.5rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    p {
+        max-width: 100%;
+    }
+
+    details {
+        margin: 1rem 0;
+    }
+
+    summary {
+        font-size: 0.85rem;
+        padding: 8px 12px 8px 36px !important;
+    }
+
+    .card-container {
+        gap: 16px;
+        margin: 1rem 0;
     }
 
     .card {
         width: 100%;
+        padding: 16px;
+    }
+
+    .left-column {
+        width: 90px;
+    }
+
+    .card-title {
+        font-size: 15px;
     }
 
     .right-column {
-        width: 110px;
+        width: auto;
+        flex: 1;
+        min-width: 90px;
+    }
+
+    .right-column a {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .wallet-section {
+        padding: 0.8rem;
+        margin: 1rem 0;
+    }
+
+    .address-line {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 10px 14px;
+        font-size: 0.85rem;
+    }
+
+    .address-hash {
+        font-size: 0.8rem;
+        word-break: break-all;
+        padding: 8px 12px;
+    }
+
+    .chain-tag {
+        font-size: 0.65rem;
+        align-self: flex-start;
+    }
+
+    .flex-explorer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .explorer-link-custom {
+        margin-left: 0;
+        font-size: 0.75rem;
+        padding: 6px 14px;
+    }
+
+    .site-footer {
+        font-size: 0.8rem;
+        margin: 2rem auto 0;
+        padding: 1rem 0 0;
+    }
+
+    .footer-links {
+        gap: 8px;
+    }
+
+    .footer-links a {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+
+    .footer-note {
+        font-size: 0.65rem;
+        margin-top: 24px;
+        padding-top: 14px;
+    }
+
+    .content-link, a:not(.navbar ul li a):not(.lang-link):not(.explorer-link-custom):not(.copy-address-btn):not(.card a) {
+        word-break: break-word;
+    }
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+    body {
+        padding: 0.5rem;
+        font-size: 15px;
+    }
+
+    .hero-img {
+        width: calc(100% + 1rem);
+        margin: -0.5rem -0.5rem 1rem -0.5rem;
+        max-height: 140px;
+    }
+
+    .navbar ul {
+        padding: 0.4rem;
+        gap: 3px;
+    }
+
+    .navbar ul li a {
+        font-size: 0.7rem;
+        padding: 6px 8px;
+        min-height: 32px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .card {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .left-column {
+        width: 100px;
+    }
+
+    .right-column {
+        width: 100%;
+    }
+
+    .right-column a {
+        width: 100%;
     }
 }
