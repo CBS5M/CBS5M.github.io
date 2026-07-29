@@ -1,337 +1,455 @@
-.full-width-image {
-    width: 100vw;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #101210;
+    color: #cffffd;
+    margin: 0;
+    min-height: 100vh;
+    font-size: 20px;
+    line-height: 1.5;
+    padding: 2rem 1.5rem;
+}
+
+.hero-img {
+    display: block;
+    width: calc(100% + 3rem);
+    max-width: none;
+    margin: -2rem -1.5rem 2rem -1.5rem;
+    object-fit: cover;
+    max-height: 320px;
+    border-bottom: 1px solid #2a5a2a;
+}
+
+p {
+    max-width: 900px;
+}
+
+h1, h2, h3 {
+    font-weight: 500;
+    letter-spacing: -0.3px;
+}
+
+h1 {
+    font-size: 2.8rem;
+    background: linear-gradient(135deg, #cffffd, #6dede7, #3eeb0e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #6dede7;
+    margin: 1.5rem 0 0.8rem;
+}
+
+h3 {
+    font-size: 1.3rem;
+    color: #b9ffcf;
+    margin: 1.2rem 0 0.5rem;
+}
+
+.Hb {
+    background-color: red;
+}
+
+/* Navbar */
+.navbar {
+    margin-bottom: 2rem;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    padding: 0.6rem 1rem;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+    background: rgba(16, 18, 16, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid #2a5a2a;
+    margin: 0;
+}
+
+.navbar ul li a {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 12px;
+    border: none;
+    color: black;
+    text-decoration: none;
+    background: linear-gradient(90deg, #3eeb0e, #6dede7, yellow, yellow);
+    background-size: 300% 100%;
+    background-position: 0% 0%;
+    transition: background-position 0.4s ease, transform 0.2s ease;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.navbar ul li a:hover {
+    background-position: 100% 0%;
+    color: #000;
+    transform: translateY(-1px);
+}
+
+.lang-link {
+    font-size: 0.8rem !important;
+    padding: 5px 14px !important;
+    border-radius: 20px !important;
+    opacity: 0.9;
+}
+
+.lang-link:hover {
+    opacity: 1;
+}
+
+/* Content links (not in navbar) */
+.content-link, a:not(.navbar ul li a):not(.lang-link):not(.explorer-link-custom):not(.copy-address-btn):not(.card a) {
+    display: inline;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    color: #6dede7;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: #3eeb0e60;
+    transition: text-decoration-color 0.3s;
+    font-weight: 400;
+}
+
+.content-link:hover, a:not(.navbar ul li a):not(.lang-link):not(.explorer-link-custom):not(.copy-address-btn):not(.card a):hover {
+    background: none;
+    color: #b9ffcf;
+    text-decoration-color: #3eeb0e;
+}
+
+/* Container */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* Accordion details/summary */
+summary {
+    display: inline-block;
+    padding: 10px 20px 10px 45px !important;
+    border-radius: 12px;
+    border: none;
+    color: black;
+    text-decoration: none;
+    background: linear-gradient(90deg, #3eeb0e, #6dede7, yellow, yellow);
+    background-size: 300% 100%;
+    background-position: 0% 0%;
+    transition: background-position 0.4s ease;
+    font-weight: 600;
+    cursor: pointer;
     position: relative;
+}
+
+summary:hover {
+    background-position: 100% 0%;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary {
+    list-style: none;
+}
+
+summary::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
+    transform: translateY(-50%) rotate(-45deg);
+    transition: transform 0.3s ease;
+}
+
+details {
+    margin: 1.5rem 0;
+}
+
+details[open] summary::before {
+    transform: translateY(-70%) rotate(45deg);
+}
+
+/* Team cards */
+.card-container {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.card {
+    background: linear-gradient(145deg, #f2a104, #d48804);
+    border-radius: 20px;
+    padding: 24px;
+    width: 320px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    box-sizing: border-box;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 120px;
+}
+
+.card-img {
+    width: 100%;
+    height: 70px;
+    object-fit: cover;
+    background-color: #000000;
+    border-radius: 12px;
+}
+
+.card-title {
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 130px;
+}
+
+.right-column a {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    color: black;
+    text-decoration: none;
+    background: linear-gradient(90deg, #3eeb0e, #6dede7, yellow, yellow);
+    background-size: 300% 100%;
+    background-position: 0% 0%;
+    transition: background-position 0.4s ease;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.right-column a:hover {
+    background-position: 100% 0%;
+    color: #000;
+}
+
+/* Wallet sections */
+.wallet-section {
+    background: rgba(0, 30, 20, 0.6);
+    backdrop-filter: blur(4px);
+    border-radius: 20px;
+    margin: 1.5rem 0;
+    padding: 1.2rem 1.8rem;
+    border: 1px solid #3eeb0e40;
+}
+
+.address-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    background: #1a2a1a;
+    padding: 12px 20px;
+    border-radius: 60px;
+    margin: 12px 0;
+    font-family: monospace;
+    font-size: 1rem;
+}
+
+.address-hash {
+    font-family: 'Courier New', monospace;
+    word-break: break-all;
+    letter-spacing: 0.5px;
+    color: #b9ffcf;
+    background: #0a1a0a;
+    padding: 5px 12px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.address-hash:hover {
+    background: #2a4a2a;
+}
+
+.chain-tag {
+    background: #2a4b2a;
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.copy-address-btn {
+    background: linear-gradient(90deg, #3eeb0e, #6dede7, yellow, yellow);
+    background-size: 300% 100%;
+    padding: 6px 16px;
+    font-size: 0.8rem;
+    border-radius: 40px;
+}
+
+.explorer-link-custom {
+    background: linear-gradient(90deg, #3eeb0e, #6dede7, yellow, yellow);
+    background-size: 300% 100%;
+    padding: 6px 16px;
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+
+.flex-explorer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+/* Toast */
+.toast-msg {
+    position: fixed;
+    bottom: 30px;
     left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    transform: translateX(-50%);
+    background: #000000cc;
+    backdrop-filter: blur(12px);
+    color: #b9ffb0;
+    padding: 12px 24px;
+    border-radius: 60px;
+    font-family: 'Ubuntu', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    border-left: 4px solid #3eeb0e;
+    z-index: 1200;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
 }
 
-*{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Ubuntu', sans-serif;
-            background-color: #101210;
-            color: #cffffd;
-            margin: 0;
-            min-height: 100vh;
-            font-size: 24px;
-            line-height: 1.4;
-            padding: 2rem 1.5rem;
-        }
-        p {
-            padding-left: 30px;
-        }
-
-        h1, h2, h3 {
-            padding-left: 10px;
-            font-weight: 500;
-            letter-spacing: -0.3px;
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            background: linear-gradient(135deg, #cffffd, #6dede7, #3eeb0e);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .Hb {
-            background-color: red;
-        }
-
-        /* Градиентные ссылки, кнопки и элементы — единый стиль */
-a {
-  display: inline-block;
-  padding-left: 30px;
-  padding: 10px 20px;
-  border-radius: 15px;
-  border: none;
-  color: black;
-  text-decoration: none;
-  background: linear-gradient(90deg, #3eeb0e, #6dede7, yellow, yellow);
-  background-size: 300% 100%;
-  background-position: 0% 0%;
-  transition: background-position 0.5s ease;
+/* Footer */
+.site-footer {
+    max-width: 960px;
+    margin: 3rem auto 0;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid #2a5a2a;
+    text-align: center;
+    font-size: 0.9rem;
 }
 
-        a:hover,
-        .gradient-btn:hover,
-        .copy-address-btn:hover,
-        .explorer-link-custom:hover,
-        .action-button:hover {
-            background-position: 100% 0%;
-            color: #000;
-        }
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
+}
 
-        .lang-link {
-            font-size: 0.8rem;
-            padding: 5px 14px;
-            border-radius: 20px;
-        }
+.footer-links a {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 12px;
+    color: black;
+    text-decoration: none;
+    background: linear-gradient(90deg, #3eeb0e, #6dede7, yellow, yellow);
+    background-size: 300% 100%;
+    background-position: 0% 0%;
+    transition: background-position 0.4s ease;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
 
-        /* Список навигации */
-        ul {
-            display: flex;
-            list-style: none;
-            padding: 0;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin: 20px 0 20px 30px;
-        }
+.footer-links a:hover {
+    background-position: 100% 0%;
+}
 
-        /* Аккордеон details/summary с кастомной стрелкой */
-        summary {
-            padding-left: 30px;
-            display: inline-block;
-            padding: 10px 20px 10px 45px !important;
-            border-radius: 15px;
-            border: none;
-            color: black;
-            text-decoration: none;
-            background: linear-gradient(90deg, #3eeb0e, #6dede7, yellow, yellow);
-            background-size: 300% 100%;
-            background-position: 0% 0%;
-            transition: background-position 0.5s ease;
-            font-weight: 600;
-            cursor: pointer;
-            position: relative;
-        }
+/* Footer note (wallets page) */
+.footer-note {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.75rem;
+    opacity: 0.7;
+    border-top: 1px solid #2a5a2a;
+    padding-top: 20px;
+}
 
-        summary:hover {
-            background-position: 100% 0%;
-        }
+/* Responsive */
+@media (max-width: 760px) {
+    body {
+        font-size: 17px;
+        padding: 1rem;
+    }
 
-        /* Скрываем стандартную стрелку */
-        summary::-webkit-details-marker {
-            display: none;
-        }
-        summary {
-            list-style: none;
-        }
+    .hero-img {
+        width: calc(100% + 2rem);
+        margin: -1rem -1rem 1.5rem -1rem;
+        max-height: 200px;
+    }
 
-        /* Кастомная стрелка */
-        summary::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            width: 10px;
-            height: 10px;
-            border-right: 3px solid black;
-            border-bottom: 3px solid black;
-            transform: translateY(-50%) rotate(-45deg);
-            transition: transform 0.3s ease;
-        }
+    .navbar ul {
+        gap: 4px;
+        padding: 0.5rem;
+    }
 
-        details {
-            padding-left: 30px;
-            padding-bottom: 30px;
-            margin-top: 15px;
-        }
+    .navbar ul li a {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
 
-        details[open] summary::before {
-            transform: translateY(-70%) rotate(45deg);
-        }
+    .address-line {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-        /* Карточки (кастомный блок из примера) */
-        .card-container {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin: 30px 0 30px 20px;
-        }
+    .wallet-section {
+        padding: 1rem;
+    }
 
-        .card {
-            background-color: #f2a104;
-            border-radius: 25px;
-            padding: 25px;
-            width: 320px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            box-sizing: border-box;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+    h1 {
+        font-size: 2rem;
+    }
 
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.3);
-        }
+    h2 {
+        font-size: 1.4rem;
+    }
 
-        .left-column {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            width: 120px;
-        }
+    .card {
+        width: 100%;
+    }
 
-        .card-img {
-            width: 100%;
-            height: 70px;
-            object-fit: cover;
-            background-color: #000000;
-            border-radius: 12px;
-        }
-
-        .card-title {
-            color: #000000;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-            line-height: 1.2;
-            letter-spacing: 0.5px;
-        }
-
-        .right-column {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 130px;
-        }
-
-        .btn {
-            background-color: #000000;
-            color: #ffffff;
-            border: none;
-            border-radius: 0;
-            padding: 12px 0;
-            font-size: 14px;
-            letter-spacing: 1px;
-            cursor: pointer;
-            text-align: center;
-            width: 100%;
-            transition: 0.2s;
-        }
-
-        .btn:hover {
-            opacity: 0.8;
-            background-color: #222;
-        }
-
-        /* Специфичные блоки для кошельков */
-        .wallet-section {
-            background: rgba(0, 30, 20, 0.6);
-            backdrop-filter: blur(4px);
-            border-radius: 2rem;
-            margin: 2rem 0;
-            padding: 1.2rem 1.8rem;
-            border: 1px solid #3eeb0e40;
-        }
-
-        .address-line {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 15px;
-            background: #1a2a1a;
-            padding: 12px 20px;
-            border-radius: 60px;
-            margin: 12px 0;
-            font-family: monospace;
-            font-size: 1rem;
-        }
-
-        .address-hash {
-            font-family: 'Courier New', monospace;
-            word-break: break-all;
-            letter-spacing: 0.5px;
-            color: #b9ffcf;
-            background: #0a1a0a;
-            padding: 5px 12px;
-            border-radius: 40px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .address-hash:hover {
-            background: #2a4a2a;
-        }
-
-        .chain-tag {
-            background: #2a4b2a;
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        .copy-address-btn {
-            background: linear-gradient(90deg, #3eeb0e, #6dede7, yellow, yellow);
-            background-size: 300% 100%;
-            padding: 6px 16px;
-            font-size: 0.8rem;
-            border-radius: 40px;
-        }
-
-        .explorer-link-custom {
-            background: linear-gradient(90deg, #3eeb0e, #6dede7, yellow, yellow);
-            background-size: 300% 100%;
-            padding: 6px 16px;
-            font-size: 0.8rem;
-            margin-left: 10px;
-        }
-
-        .flex-explorer {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 5px;
-        }
-
-        /* Всплывающий тост */
-        .toast-msg {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #000000cc;
-            backdrop-filter: blur(12px);
-            color: #b9ffb0;
-            padding: 12px 24px;
-            border-radius: 60px;
-            font-family: 'Ubuntu', monospace;
-            font-size: 1rem;
-            font-weight: bold;
-            border-left: 4px solid #3eeb0e;
-            z-index: 1200;
-            opacity: 0;
-            transition: opacity 0.2s;
-            pointer-events: none;
-        }
-
-        /* Адаптивность */
-        @media (max-width: 760px) {
-            body {
-                font-size: 18px;
-                padding: 1rem;
-            }
-            .address-line {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .wallet-section {
-                padding: 1rem;
-            }
-            h1 {
-                font-size: 2rem;
-            }
-        }
-
-        /* Дополнительный стиль для разделителя */
-        .footer-note {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.75rem;
-            opacity: 0.7;
-            border-top: 1px solid #2a5a2a;
-            padding-top: 20px;
-        }
+    .right-column {
+        width: 110px;
+    }
+}
