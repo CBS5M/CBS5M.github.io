@@ -114,11 +114,25 @@
     </div>
 </footer>
 <script>
+var startIndex = 1;
+var pageSize = 10;
+var isLoading = false;
+var endReached = false;
+
+function getPostId(entry) {
+    var m = entry.id.$t.match(/post-(\d+)/);
+    return m ? m[1] : '';
+}
+
 function renderPosts(json) {
     var feed = json.feed;
+    isLoading = false;
     var container = document.getElementById('blog-posts');
     if (!feed.entry || feed.entry.length === 0) {
-        container.innerHTML = '<p style="text-align:center;opacity:0.6;">Пока нет записей.</p>';
+        endReached = true;
+        if (startIndex === 1) {
+            container.innerHTML = '<p style="text-align:center;opacity:0.6;">Пока нет записей.</p>';
+        }
         return;
     }
     var html = '';
@@ -127,13 +141,7 @@ function renderPosts(json) {
         var title = entry.title.$t || 'Без названия';
         var date = entry.published.$t;
         var content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
-        var link = '';
-        for (var j = 0; j < entry.link.length; j++) {
-            if (entry.link[j].rel === 'alternate') {
-                link = entry.link[j].href;
-                break;
-            }
-        }
+        var postId = getPostId(entry);
         var d = new Date(date);
         var months = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
         var formattedDate = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
@@ -141,15 +149,32 @@ function renderPosts(json) {
         var snippet = plainText.substring(0, 350);
         if (plainText.length > 350) snippet += '...';
         html += '<div class="blog-post">';
-        html += '<h3><a href="' + link + '" target="_blank" rel="noopener noreferrer">' + title + '</a></h3>';
+        html += '<h3><a href="news-post.ru.html?id=' + encodeURIComponent(postId) + '">' + title + '</a></h3>';
         html += '<p class="post-date">' + formattedDate + '</p>';
         html += '<p>' + snippet + '</p>';
-        html += '<a href="' + link + '" target="_blank" rel="noopener noreferrer" class="read-more">Читать далее</a>';
+        html += '<a href="news-post.ru.html?id=' + encodeURIComponent(postId) + '" class="read-more">Читать далее</a>';
         html += '</div>';
     }
-    container.innerHTML = html;
+    container.insertAdjacentHTML('beforeend', html);
+    startIndex += feed.entry.length;
+    if (feed.entry.length < pageSize) endReached = true;
 }
+
+function loadMore() {
+    if (isLoading || endReached) return;
+    isLoading = true;
+    var s = document.createElement('script');
+    s.src = 'https://cbrus.blogspot.com/feeds/posts/default?alt=json-in-script&callback=renderPosts&max-results=' + pageSize + '&start-index=' + startIndex;
+    document.body.appendChild(s);
+}
+
+window.addEventListener('scroll', function() {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 300) {
+        loadMore();
+    }
+});
+
+loadMore();
 </script>
-<script src="https://cbrus.blogspot.com/feeds/posts/default?alt=json-in-script&callback=renderPosts&max-results=10"></script>
 </body>
 </html>

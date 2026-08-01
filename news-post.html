@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CBS5M - News</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        .blog-post {
+            background: rgba(0, 30, 20, 0.5);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid #2a5a2a40;
+            transition: border-color 0.3s;
+        }
+        .post-date {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            margin-bottom: 0.8rem;
+        }
+        .blog-post img {
+            max-width: 100%;
+            border-radius: 12px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #6dede7;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+<img src="img1.png" alt="CBS5M" class="hero-img">
+<header class="navbar">
+    <div class="logo"></div>
+    <nav>
+        <ul>
+            <li><a class="Hb" href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="Team.html">Team</a></li>
+            <li><a href="ser.html">Services</a></li>
+            <li><a href="rul.html">Rules</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="wallets.html">Wallets</a></li>
+            <li><a href="doshuw.html">Doshuw SOM</a></li>
+            <li><a href="ACKP.html">AML, CFT, KYC Policy.</a></li>
+            <li style="margin-left:auto;"><a href="news-post.ru.html" class="lang-link">Русский</a></li>
+        </ul>
+    </nav>
+</header>
+    <div class="container">
+        <div id="post-content">
+            <div class="loading">Loading post...</div>
+        </div>
+    </div>
+    <footer class="site-footer">
+    <p>2020 - 2026. &copy; CBS5M Project.</p>
+    <div class="footer-links">
+        <a href="http://www.facebook.com/coinBusiness.official">Facebook</a>
+        <a href="http://www.instagram.com/coinbusiness_official">Instagram</a>
+        <a href="http://www.linkedin.com/company/coinbusiness">LinkedIn</a>
+    </div>
+</footer>
+<script>
+function getParam(name) {
+    var match = location.search.match(new RegExp('[?&]' + name + '=([^&]*)'));
+    return match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : '';
+}
+function renderPost(json) {
+    var container = document.getElementById('post-content');
+    var entry = json.feed.entry;
+    if (!entry) {
+        container.innerHTML = '<p style="text-align:center;opacity:0.6;">Post not found.</p><p style="text-align:center;"><a class="back-link" href="news.html">Back to News</a></p>';
+        return;
+    }
+    var title = entry.title.$t || 'Untitled';
+    var content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
+    var d = new Date(entry.published.$t);
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var formattedDate = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    var html = '<div class="blog-post">';
+    html += '<h1>' + title + '</h1>';
+    html += '<p class="post-date">' + formattedDate + '</p>';
+    html += '<div>' + content + '</div>';
+    html += '</div>';
+    html += '<p style="text-align:center;"><a class="back-link" href="news.html">&larr; Back to News</a></p>';
+    container.innerHTML = html;
+}
+var id = getParam('id');
+if (!id) {
+    document.getElementById('post-content').innerHTML = '<p style="text-align:center;opacity:0.6;">No post selected.</p><p style="text-align:center;"><a class="back-link" href="news.html">Back to News</a></p>';
+} else {
+    var s = document.createElement('script');
+    s.src = 'https://cbs5m.blogspot.com/feeds/posts/default/' + encodeURIComponent(id) + '?alt=json-in-script&callback=renderPost';
+    document.body.appendChild(s);
+}
+</script>
+</body>
+</html>

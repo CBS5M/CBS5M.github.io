@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>CBS5M - Новости</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        .blog-post {
+            background: rgba(0, 30, 20, 0.5);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid #2a5a2a40;
+            transition: border-color 0.3s;
+        }
+        .post-date {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            margin-bottom: 0.8rem;
+        }
+        .blog-post img {
+            max-width: 100%;
+            border-radius: 12px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #6dede7;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+<img src="img1.png" alt="CBS5M" class="hero-img">
+<header class="navbar">
+    <div class="logo"></div>
+    <nav>
+        <ul>
+            <li><a class="Hb" href="index.ru.html">Главная</a></li>
+            <li><a href="about.ru.html">О нас</a></li>
+            <li><a href="Team.ru.html">Команда</a></li>
+            <li><a href="ser.ru.html">Услуги</a></li>
+            <li><a href="rul.ru.html">Правила</a></li>
+            <li><a href="news.ru.html">Новости</a></li>
+            <li><a href="wallets.ru.html">Кошельки</a></li>
+            <li><a href="doshuw.ru.html">Doshuw SOM</a></li>
+            <li><a href="ACKP.ru.html">Политика AML, CFT, KYC.</a></li>
+            <li style="margin-left:auto;"><a href="news-post.html" class="lang-link">English</a></li>
+        </ul>
+    </nav>
+</header>
+    <div class="container">
+        <div id="post-content">
+            <div class="loading">Загрузка записи...</div>
+        </div>
+    </div>
+    <footer class="site-footer">
+    <p>2020 - 2026. &copy; Проект CBS5M.</p>
+    <div class="footer-links">
+        <a href="http://www.facebook.com/coinBusiness.official">Facebook</a>
+        <a href="http://www.instagram.com/coinbusiness_official">Instagram</a>
+        <a href="http://www.linkedin.com/company/coinbusiness">LinkedIn</a>
+    </div>
+</footer>
+<script>
+function getParam(name) {
+    var match = location.search.match(new RegExp('[?&]' + name + '=([^&]*)'));
+    return match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : '';
+}
+function renderPost(json) {
+    var container = document.getElementById('post-content');
+    var entry = json.feed.entry;
+    if (!entry) {
+        container.innerHTML = '<p style="text-align:center;opacity:0.6;">Запись не найдена.</p><p style="text-align:center;"><a class="back-link" href="news.ru.html">Назад к новостям</a></p>';
+        return;
+    }
+    var title = entry.title.$t || 'Без названия';
+    var content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
+    var d = new Date(entry.published.$t);
+    var months = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+    var formattedDate = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+    var html = '<div class="blog-post">';
+    html += '<h1>' + title + '</h1>';
+    html += '<p class="post-date">' + formattedDate + '</p>';
+    html += '<div>' + content + '</div>';
+    html += '</div>';
+    html += '<p style="text-align:center;"><a class="back-link" href="news.ru.html">&larr; Назад к новостям</a></p>';
+    container.innerHTML = html;
+}
+var id = getParam('id');
+if (!id) {
+    document.getElementById('post-content').innerHTML = '<p style="text-align:center;opacity:0.6;">Запись не выбрана.</p><p style="text-align:center;"><a class="back-link" href="news.ru.html">Назад к новостям</a></p>';
+} else {
+    var s = document.createElement('script');
+    s.src = 'https://cbrus.blogspot.com/feeds/posts/default/' + encodeURIComponent(id) + '?alt=json-in-script&callback=renderPost';
+    document.body.appendChild(s);
+}
+</script>
+</body>
+</html>
