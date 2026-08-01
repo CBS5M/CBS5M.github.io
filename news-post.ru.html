@@ -7,12 +7,24 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
         .blog-post {
-            background: rgba(0, 30, 20, 0.5);
             border-radius: 16px;
             padding: 1.5rem;
             margin: 1.5rem 0;
-            border: 1px solid #2a5a2a40;
-            transition: border-color 0.3s;
+        }
+        .blog-post p,
+        .blog-post div,
+        .blog-post span,
+        .blog-post h1,
+        .blog-post h2,
+        .blog-post h3,
+        .blog-post li,
+        .blog-post blockquote {
+            background: transparent !important;
+            color: #ffffff !important;
+            border-bottom: none !important;
+        }
+        .blog-post a {
+            color: #6dede7 !important;
         }
         .post-date {
             font-size: 0.85rem;
@@ -22,6 +34,7 @@
         .blog-post img {
             max-width: 100%;
             border-radius: 12px;
+            background: transparent !important;
         }
         .back-link {
             display: inline-block;
@@ -101,7 +114,10 @@ if (!id) {
     document.getElementById('post-content').innerHTML = '<p style="text-align:center;opacity:0.6;">Запись не выбрана.</p><p style="text-align:center;"><a class="back-link" href="news.ru.html">Назад к новостям</a></p>';
 } else {
     var s = document.createElement('script');
-    s.src = 'https://cbrus.blogspot.com/feeds/posts/default/' + encodeURIComponent(id) + '?alt=json-in-script&callback=renderPost';
+    s.src = 'https://cbrus.blogspot.com/feeds/posts/default/' + encodeURIComponent(id) + '?alt=json-in-script&callback=renderPost&_=' + new Date().getTime();
+    s.onerror = function() {
+        document.getElementById('post-content').innerHTML = '<p style="text-align:center;opacity:0.6;">Не удалось загрузить запись. Попробуйте ещё раз.</p><p style="text-align:center;"><a class="back-link" href="news.ru.html">Назад к новостям</a></p>';
+    };
     document.body.appendChild(s);
 }
 </script>
