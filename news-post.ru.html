@@ -78,7 +78,7 @@ function getParam(name) {
 }
 function renderPost(json) {
     var container = document.getElementById('post-content');
-    var entry = json.feed.entry;
+    var entry = json.feed ? json.feed.entry : json.entry;
     if (!entry) {
         container.innerHTML = '<p style="text-align:center;opacity:0.6;">Запись не найдена.</p><p style="text-align:center;"><a class="back-link" href="news.ru.html">Назад к новостям</a></p>';
         return;
